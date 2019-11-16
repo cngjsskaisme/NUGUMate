@@ -2,11 +2,14 @@
  You can also see the our latest description of this project at https://www.overleaf.com/project/5dc7a70e54333100014e340e .  
  
  You can also see the server of this project at https://github.com/flyc4/NUGUMATE-Server  
- You can also see the model of this project at https://github.com/flyc4/NUGUMATE-Model
+ You can also see the model of this project at https://github.com/flyc4/NUGUMATE-Model  
  
+![brief_interaction](./images/brief_interaction.png)  
+
+
 English: 
 Both demands for AI speaker and people who regard AI speakers as an interlocutor are increasing. For these reasons, the demand for the service that AI speaker can provide comfort is increasing. 
-A user keeps a diary in the application, sends it to the server, and sentiment analysis model linked with another server(the model server) classifies the emotions of each sentence of the diary into positive or negative. In addition to the classification results, one of the answers that are predefined by the developer for each result is randomly stored. After that, when the user starts a daily conversation with the NUGU device, such as "Aria, how was your day?", then it requests a proper answer to the server and the server gives the answer to the speaker such as “I was depressed because you looked depressed”, and the speaker answers it to the user.
+A user keeps a diary in the application, sends it to the server, and sentiment analysis model linked with another server(the model server) classifies the emotions of each sentence of the diary into positive or negative. In addition to the classification results, one of the answers that are predefined by the developer for each result is randomly stored. After that, when the user starts a daily conversation with the NUGU device, such as "Aria, how was your day?", then it requests a proper answer to the server and the server gives the answer to the speaker such as “I was depressed because you looked depressed”, and the speaker answers it to the user.  
 
 Korean(한국어): 
 인공지능 스피커에 대한 수요와 인공지능 스피커를 단순한 기기가 아닌 대화의 대상이라고 생각하는 사용자들이 증가하고 있다. 이에 따라 심리적 위안을 제공해 줄 수 있는 인공 지능 스피커의 서비스에 대한 수요가 증가하고 있다. 
