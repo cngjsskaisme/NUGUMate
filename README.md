@@ -1,4 +1,4 @@
-# NUGU MATE: NUGU speaker empathizes with your feelings 
+# NUGUMATE: NUGU speaker empathizes with your feelings 
  You can also see the our latest description of this project at https://www.overleaf.com/project/5dc7a70e54333100014e340e .  
  
  You can also see the server of this project at https://github.com/flyc4/NUGUMATE-Server  
