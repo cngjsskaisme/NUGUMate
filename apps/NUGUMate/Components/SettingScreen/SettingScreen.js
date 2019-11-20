@@ -11,28 +11,36 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Switch } from 'react-native-paper';
 import PropTypes from 'prop-types';
+import LockScreen from '../MainScreen/LockScreen';
+import { navigation, withNavigation } from 'react-navigation'; 
 
 class SettingScreen extends Component{
     static defaultProps = {
-        isSwitchOn : false,
+        isLockEnabled : false,
     }
 
     constructor(props){
         super(props);
         this.state = {
-            isSwitchOn : false,
+            isLockEnabled : false,
         }
     }
 
+    _onChangeFunction(newState) {
+        this.setState(newState)
+        if(this.state.isLockEnabled)
+    }
+
     render(){
+        console.log(this.state.isLockEnabled)
         return(
             <View>
                 <Text>
                     비밀번호 설정
                 </Text>
                 <Switch
-                    value={this.state.isSwitchOn}
-                    onValueChange={() => { this.setState({ isSwitchOn: !isSwitchOn }); }}
+                    onValueChange={(value) => { this._onChangeFunction({ isLockEnabled: value }) }}
+                    value={this.state.isLockEnabled}
                 />
             </View>
         );
@@ -43,4 +51,4 @@ SettingScreen.propTypes = {
     name: PropTypes.string
   };
 
-export default SettingScreen;
+export default withNavigation(SettingScreen);

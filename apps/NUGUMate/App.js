@@ -4,13 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { MainScreen, SettingScreen } from './Components/Components'
+import { MainScreen, SettingScreen, LoginScreen } from './Components/Components'
 import AppContext from './Components/AppContext';
 import EntryEditor from './Components/MainScreen/EntryEditor';
+import LockScreen from './Components/MainScreen/LockScreen';
 
 const MainStack = createStackNavigator({
   Main: MainScreen,
   EditEntry: EntryEditor,
+  LockScreen: LockScreen,
 });
 
 const SettingStack = createStackNavigator({
@@ -37,8 +39,20 @@ const TabNavigator = createBottomTabNavigator(
     }
 );
 
-const AppContainer = createAppContainer(TabNavigator);
+// TabNavigator가 Stacknavigator에 한번 더 감싸지도록 하여 Loginscreen -> Tabnavigator로 네비게이션 
+const AppStack = createStackNavigator(
+  {
+    LoginScreen: LoginScreen,
+    TabNavigator: {
+      screen : TabNavigator,
+      navigationOptions : ({navigation}) => ({
+        header: null,
+      }),
+    },
+  }
+);
 
+const AppContainer = createAppContainer(AppStack);
 
 export default class App extends React.Component {
   static defaultProps = {
