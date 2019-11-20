@@ -9,31 +9,31 @@
 export const diaryEntry = {
     '2019-11-03' : {
         marked : true,
-        contents : 'diary 0231'
+        contents : '과제 때문에 힘들다.'
     },
     '2019-11-06' : {
         marked : true,
-        contents : 'diary 01431'
+        contents : '과제가 조금 더 줄었으면 좋겠다.'
     },
     '2019-11-08' : {
         marked : true,
-        contents : 'diary 0231231'
+        contents : '배가 많이 고프다. 자고 싶다.'
     },
     '2019-11-10' : {
         marked : true,
-        contents : 'diary 0551231'
+        contents : '집에 가고 싶다.'
     },
     '2019-11-20' : {
         marked : true,
-        contents : 'diary 0541231'
+        contents : '오늘은 영화관에 혼자 갔다.'
     },
     '2019-11-25' : {
         marked : true,
-        contents : 'diary 0512351'
+        contents : '지하철을 놓쳤다.'
     },
     '2019-11-29' : {
         marked : true,
-        contents : 'diary 0123551'
+        contents : '집에서 스타2를 했다. 재밌었다.'
     },
 }
 

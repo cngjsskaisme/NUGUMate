@@ -1,5 +1,5 @@
 /*
-작성자 : 김택준, 추헌남
+작성자 : 김택준
 최초작성일 : 2019/11/20
 설명 : 잠금화면 스크린
 다음을 Prop으로 받겠습니다 (받는 타입은 PropTypes에서 기술) :
@@ -10,12 +10,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import PinView from 'react-native-pin-view';
-import { navigation, withNavigation } from 'react-navigation'; 
-import { Snackbar } from 'react-native-paper';
 
 class LockScreen extends Component{
     defaultProps = {
-        _onSetStateSettingScreen : () => {},
+        pin : '',
+        checkpin : '',
         firstAttempt : true,
         secondAttempt : false,
         setError : false,
@@ -24,9 +23,9 @@ class LockScreen extends Component{
     constructor(props) {
         super(props);
         this._onComplete = this._onComplete.bind(this);
-        this._onCheck = this._onCheck.bind(this)
         this.state = {
-            _onSetStateSettingScreen : this.props.navigation.getParam('_onSetStateSettingScreen', () => {}),
+            pin: '',
+            checkpin: '',
             firstAttempt : true,
             secondAttempt : false,
             setError : false,
@@ -35,30 +34,30 @@ class LockScreen extends Component{
 
     _onComplete(inputtedPin, clear) {
         if (this.state.firstAttempt){
-            this.setState({firstAttempt : false, secondAttempt : true})
-            firstPin = inputtedPin
+            this.setState({checkpin : inputtedPin, firstAttempt : false, secondAttempt : true})
             clear()
         }
 
         if (this.state.setError){
-            this.setState({setError : false, secondAttempt : true})
-            firstPin = inputtedPin
+            this.setState({checkpin : inputtedPin, setError : false, secondAttempt : true})
             clear()
         }
     }
 
     _onCheck(inputtedPin, clear){
-        if(firstPin == inputtedPin){
-            this.props.navigation.pop()
-            this.state._onSetStateSettingScreen({toastVisible : true, toastMessage : '비밀번호 설정이 완료되었습니다.'})
-            clear()
+        if(this.state.checkpin == inputtedPin){
+            console.log('Password set')
         }
         else{
-            this.setState({setError : true, secondAttempt : false})
+            this.setState({setError : true})
             clear()
         }
     }
 
+    _onPress(inputtedPin, clear, pressed) {
+        console.log("Pressed: " + pressed);
+        console.log("inputtedpin: " + inputtedPin);
+    }
     render(){
         if(this.state.firstAttempt)
             return(
@@ -67,26 +66,29 @@ class LockScreen extends Component{
                     backgroundColor: '#f1f1f1',
                     justifyContent : 'center',
                 }}>
-                    <Text style={styles.promptMessage}>
+                    <Text style={{textAlign:"center"}}>
                         사용하실 비밀번호를 설정해주세요.
                     </Text>
                     <PinView
+                        onPress={this._onPress}
                         onComplete={this._onComplete}
                         pinLength={4}
                     />
                 </View>
             );
         if(this.state.secondAttempt){
+            console.log(this.state.pin)
             return(
                 <View style={{
                     flex           : 1,
                     backgroundColor: '#f1f1f1',
                     justifyContent : 'center',
                 }}>
-                    <Text style={styles.promptMessage}>
+                    <Text style={{textAlign:"center"}}>
                         사용하실 비밀번호를 다시 한 번 입력해주세요.
                     </Text>
                     <PinView
+                        onPress={this._onPress}
                         onComplete={this._onCheck}
                         pinLength={4}
                     />
@@ -100,10 +102,11 @@ class LockScreen extends Component{
                 backgroundColor: '#f1f1f1',
                 justifyContent : 'center',
             }}>
-                <Text style={styles.promptMessage}>
+                <Text style={{textAlign:"center"}}>
                     입력하신 비밀번호가 같지 않습니다. 다시 입력해주세요.
                 </Text>
                 <PinView
+                    onPress={this._onPress}
                     onComplete={this._onComplete}
                     pinLength={4}
                 />
@@ -116,11 +119,4 @@ LockScreen.propTypes = {
     name: PropTypes.string
   };
 
-const styles = StyleSheet.create({
-    promptMessage : {
-        textAlign : "center",
-        paddingBottom : 10,
-    }
-});
-
-export default withNavigation(LockScreen);
+export default LockScreen;

@@ -57,6 +57,7 @@ class EntryEditor extends Component{
                     placeholder='지금 떠오르는 생각이 있나요?'
                     multiline={true}
                     textAlignVertical={'top'}
+                    autoFocus={true}
                 />
             </View>
         );

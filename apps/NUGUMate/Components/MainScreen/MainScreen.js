@@ -8,7 +8,7 @@
 
 
 import React, { Component } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import moment from 'moment'
@@ -31,6 +31,19 @@ class MainScreen extends Component{
             markedList: diaryEntry,
         }
     }
+
+        static navigationOptions = ({ navigation }) => ({
+        headerTitle: () => {
+            return(
+                <View style={{flex: 1}}>
+                    <Image
+                        style={{flex: 1, width: '45%', height: '45%'}}
+                        resizeMode={"contain"}
+                        source={require('../../assets/Primary_logo.png')}/>
+                </View>
+            )
+        },
+    })
 
     render(){
         return(

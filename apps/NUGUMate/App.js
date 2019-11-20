@@ -12,11 +12,11 @@ import LockScreen from './Components/MainScreen/LockScreen';
 const MainStack = createStackNavigator({
   Main: MainScreen,
   EditEntry: EntryEditor,
-  LockScreen: LockScreen,
 });
 
 const SettingStack = createStackNavigator({
   Settings: SettingScreen,
+  LockScreen: LockScreen,
 });
 
 const TabNavigator = createBottomTabNavigator(
