@@ -21,7 +21,7 @@ class LockScreen extends Component{
     }
 
     onComplete(inputtedPin, clear) {
-        if (val != this.state.pin) {
+        if (inputtedPin != this.state.pin) {
             clear();
         } else {
             console.log("Pin is correct");

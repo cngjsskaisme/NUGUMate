@@ -28,7 +28,12 @@ class SettingScreen extends Component{
 
     _onChangeFunction(newState) {
         this.setState(newState)
-        if(this.state.isLockEnabled)
+        if(!this.state.isLockEnabled) {
+            this.props.navigation.navigate('LockScreen', { 
+                selectedDate : this.props.selectedDate,
+                diaryList : this.props.diaryList,
+            })
+        }
     }
 
     render(){
