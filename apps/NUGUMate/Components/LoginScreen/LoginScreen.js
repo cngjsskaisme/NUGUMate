@@ -11,12 +11,18 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import MainScreen from '../MainScreen/MainScreen';
+import { navigation, withNavigation, NavigationActions } from 'react-navigation'; 
 
 class LoginScreen extends Component{
     render(){
+        if(true) // 조건이 맞을 경우 메인 스크린 진입
+            this.props.navigation.reset([NavigationActions.navigate({ routeName: 'TabNavigator' })], 0);
+
         return(
-            <MainScreen/>
-        );
+            <View>
+
+            </View>
+        )
     }
 }
 
@@ -24,4 +30,4 @@ LoginScreen.propTypes = {
     name: PropTypes.string
   };
 
-export default LoginScreen;
+export default withNavigation(LoginScreen);

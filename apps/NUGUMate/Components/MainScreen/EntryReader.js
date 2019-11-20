@@ -54,7 +54,7 @@ class EntryReader extends Component{
                 <TouchableRipple style = {styles.touch}
                     onPress={() => this._onPressEdit()}>
                     <Text style = {{textAlign: 'center',}}>
-                        아직은 글이 없네요.{"\n\n"}이 날의 메모를 작성해보시는 건 어떨까요?{"\n\n"}여기를 눌러 작성해보세요!
+                        아직은 글이 없네요.{"\n\n"}이 날의 메모를 작성해보시는 건 어떨까요?{"\n\n"}여기를 탭하여 작성해보세요! {"\n"}
                     </Text>
                 </TouchableRipple>
             )
