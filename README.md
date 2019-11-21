@@ -4,7 +4,7 @@
  You can also see the server of this project at https://github.com/flyc4/NUGUMATE-Server  
  You can also see the model of this project at https://github.com/flyc4/NUGUMATE-Model  
  
-![brief_interaction_database](./images/brief_interation_database.png)  
+![brief_interaction_database](./images/brief_interaction_database.png)  
 
 
 English: 
