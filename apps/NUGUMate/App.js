@@ -1,13 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { MainScreen, SettingScreen, LoginScreen } from './Components/Components'
+import { MainScreen, SettingScreen} from './Components/Components'
 import AppContext from './Components/AppContext';
 import EntryEditor from './Components/MainScreen/EntryEditor';
 import LockScreen from './Components/MainScreen/LockScreen';
+import InitialScreen from './Components/InitialScreen/InitialScreen';
+
+const InitialSwitch = createSwitchNavigator({
+  Initial: InitialScreen
+}, 
+{
+  initialRouteName: 'Initial'
+}
+); 
 
 const MainStack = createStackNavigator({
   Main: MainScreen,
@@ -37,22 +46,18 @@ const TabNavigator = createBottomTabNavigator(
         }
       },
     }
-);
+); 
 
-// TabNavigator가 Stacknavigator에 한번 더 감싸지도록 하여 Loginscreen -> Tabnavigator로 네비게이션 
-const AppStack = createStackNavigator(
-  {
-    LoginScreen: LoginScreen,
-    TabNavigator: {
-      screen : TabNavigator,
-      navigationOptions : ({navigation}) => ({
-        header: null,
-      }),
-    },
-  }
-);
+//잠금화면과 나머지 화면을 묶기 위함.
+const AppSwitchNavigator = createSwitchNavigator({ 
+  InitialSwitch: {screen: InitialSwitch}, 
+  TabNavigator: {screen: TabNavigator}
+}, 
+{
+  initialRouteName: 'InitialSwitch'
+})
 
-const AppContainer = createAppContainer(AppStack);
+const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default class App extends React.Component {
   static defaultProps = {

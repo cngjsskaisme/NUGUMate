@@ -11,15 +11,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import PinView from 'react-native-pin-view';
 import { navigation, withNavigation } from 'react-navigation'; 
-import { Snackbar } from 'react-native-paper';
+import { Snackbar } from 'react-native-paper';  
+import {deviceStorage} from '../ServerLib/config'; 
+import { HeaderBackButton } from 'react-navigation-stack';
 
 class LockScreen extends Component{
-    defaultProps = {
-        _onSetStateSettingScreen : () => {},
-        firstAttempt : true,
-        secondAttempt : false,
-        setError : false,
-    }
 
     constructor(props) {
         super(props);
@@ -33,6 +29,14 @@ class LockScreen extends Component{
         }
     }
 
+    static navigationOptions = ({ navigation }) => {
+        const {params = {}} = navigation.state;
+        
+        return{
+            headerLeft: ( <HeaderBackButton onPress = {() => params._DeactivatePassword()}/>) 
+        }; 
+    }
+    
     _onComplete(inputtedPin, clear) {
         if (this.state.firstAttempt){
             this.setState({firstAttempt : false, secondAttempt : true})
@@ -47,17 +51,29 @@ class LockScreen extends Component{
         }
     }
 
-    _onCheck(inputtedPin, clear){
+    _onCheck = async (inputtedPin, clear) => {
         if(firstPin == inputtedPin){
+            await deviceStorage.saveKey("password", inputtedPin);            
             this.props.navigation.pop()
             this.state._onSetStateSettingScreen({toastVisible : true, toastMessage : '비밀번호 설정이 완료되었습니다.'})
-            clear()
+            clear();
         }
         else{
             this.setState({setError : true, secondAttempt : false})
             clear()
         }
+    } 
+
+    _DeactivatePassword = async () => { 
+        this.state._onSetStateSettingScreen({isLockEnabled : false}) 
+        this.props.navigation.goBack()
     }
+
+    componentDidMount(){ 
+        this.props.navigation.setParams({
+        _DeactivatePassword: this._DeactivatePassword 
+        })
+    } 
 
     render(){
         if(this.state.firstAttempt)

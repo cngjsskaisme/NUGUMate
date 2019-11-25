@@ -1,5 +1,5 @@
 /*
-작성자 : 추헌남
+작성자 : 추헌남, 김창희
 최초작성일 : 2019/11/17
 설명 : 설정 스크린
 다음을 Prop으로 받겠습니다 (받는 타입은 PropTypes에서 기술) :
@@ -13,15 +13,12 @@ import { Switch } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import LockScreen from '../MainScreen/LockScreen';
 import { navigation, withNavigation } from 'react-navigation'; 
-import { Snackbar } from 'react-native-paper';
+import { Snackbar } from 'react-native-paper'; 
+import {deviceStorage} from '../ServerLib/config'
+
 
 class SettingScreen extends Component{
-    static defaultProps = {
-        toastVisible : false,
-        toastMessage : '',
-        isLockEnabled : false,
-    }
-
+    
     constructor(props){
         super(props);
         this._onSetStateSettingScreen = this._onSetStateSettingScreen.bind(this)
@@ -39,24 +36,31 @@ class SettingScreen extends Component{
                     설정
                 </Text>
             )
-        },
+        }, 
     })
 
     _onSetStateSettingScreen(state){
         this.setState({...this.state, ...state})
-    }
+    } 
 
-    _onChangePassword(newState) {
+    async componentWillMount(){
+        if(await deviceStorage.getItem("password")){
+            this.setState({isLockEnabled : true})
+        }
+    } 
+
+    _onChangePassword = async(newState) => {
         this.setState(newState)
         if(!this.state.isLockEnabled) {
             this.props.navigation.navigate('LockScreen', { 
                 _onSetStateSettingScreen : this._onSetStateSettingScreen,
             })
         }
-        if(this.state.isLockEnabled) {
+        if(this.state.isLockEnabled) { 
+            await deviceStorage.deleteItem("password");
             this.setState({toastVisible : true, toastMessage : '비밀번호 설정이 해제되었습니다.'})
         }
-    }
+    }  
 
     render(){
         return(
