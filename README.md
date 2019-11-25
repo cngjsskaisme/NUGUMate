@@ -1,9 +1,9 @@
 ![Primary_logo](https://user-images.githubusercontent.com/13705536/69392188-8e89e780-0d18-11ea-995d-d7373d54b055.png)
 # NUGUMATE: NUGU speaker empathizes with your feelings 
- You can also see the our latest description of this project at https://www.overleaf.com/read/mgsvwfwgvqjb.
- 
- You can also see the server of this project at https://github.com/flyc4/NUGUMATE-Server  
- You can also see the model of this project at https://github.com/flyc4/NUGUMATE-Model  
+ You can also see :
+  - Our latest description of this project : https://www.overleaf.com/read/mgsvwfwgvqjb.
+  - Server of this project : https://github.com/flyc4/NUGUMATE-Server  
+  - Model of this project : https://github.com/hyun1014/NUGUMATE_Model  
  
 ![brief_interaction_database](./images/brief_interaction_database.png)  
 
