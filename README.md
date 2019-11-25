@@ -13,7 +13,7 @@
 ![brief_interaction_database](./images/brief_interaction_database.png)  
 
 
-## You can also see
+## You can also see...
   - Our latest description of this project : https://www.overleaf.com/read/mgsvwfwgvqjb
   - Server used in this project : https://github.com/flyc4/NUGUMATE-Server  
   - Model used in this project : https://github.com/hyun1014/NUGUMATE_Model  
