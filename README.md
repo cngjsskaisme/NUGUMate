@@ -9,7 +9,7 @@ After that, when the user starts a daily conversation with the NUGU device, such
 
 
 ## Brief Introduction of this project's interaction
-![brief_interaction_database](./images/brief_interaction_.png)  
+![brief_interaction_final](./images/brief_interaction_final.png)  
 
 
 ## You can also see...
