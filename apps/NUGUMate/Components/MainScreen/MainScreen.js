@@ -3,7 +3,9 @@
 최초작성일 : 2019/11/17
 설명 : 메인 스크린
 다음을 Prop으로 받겠습니다 (받는 타입은 PropTypes에서 기술) :
-    안받음
+    안받음 
+
+참고: 여기서 this.state.nuguname은 asyncstorage 에서 불러온 이름 + 아/야 이다.    
 */
 
 
@@ -28,7 +30,7 @@ class MainScreen extends Component{
     static defaultProps ={
         selectedDate : {},
         markedList : {}, 
-        nuguname: " "
+        nuguname: " ", 
     }
 
     constructor(props){
@@ -39,6 +41,7 @@ class MainScreen extends Component{
             isError: false,
             year: moment(new Date()).format('YYYY'), 
             month: moment(new Date()).format('M'), 
+            callnugu: " ",
         }
     }
 
@@ -69,10 +72,21 @@ class MainScreen extends Component{
         } 
         await _RetrieveDisplay_Monthly_Diary({...this.state},this._onSetStateMainScreen, this.state.year, this.state.month);         
         this._isMounted = true; 
-        if(this._isMounted){
-            this.setState({nuguname: await deviceStorage.getItem("nuguname")}) 
+        if(this._isMounted){    
+            //nuguname에 따라 아/야 를 덧붙임
+            if(await deviceStorage.getItem("nuguname") === "바다" || await deviceStorage.getItem("nuguname") === "나비"){ 
+                let callnugu = await deviceStorage.getItem("nuguname") + "야,";
+                this.setState({
+                    nuguname: await deviceStorage.getItem("nuguname"), 
+                    callnugu: callnugu}) 
+            }   
+            else if(await deviceStorage.getItem("nuguname") == "하늘" || await deviceStorage.getItem("nuguname") === "사랑"){ 
+                let callnugu = await deviceStorage.getItem("nuguname") + "아,";
+                this.setState({
+                    nuguname: await deviceStorage.getItem("nuguname"), 
+                    callnugu: callnugu}) 
+            }      
         }
-    
     }   
     componentWillUnmount() {
         this._isMounted = false
@@ -105,7 +119,7 @@ class MainScreen extends Component{
                 
                     <Text style={styles.nugusentence}>
                         <Text>누구 스피커에 </Text>
-                        <Text style={styles.nuguname}>"{this.state.nuguname}야, 오늘 하루 어땠어?"</Text> 
+                        <Text style={styles.nuguname}>"{this.state.callnugu} 오늘 하루 어땠어?"</Text> 
                         <Text> 라고 물어보세요!</Text>
                     </Text>
                  
