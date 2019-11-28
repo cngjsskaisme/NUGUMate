@@ -17,3 +17,4 @@ After that, when the user starts a daily conversation with the NUGU device, such
   - Server used in this project : https://github.com/flyc4/NUGUMATE-Server  
   - Model used in this project : https://github.com/hyun1014/NUGUMATE_Model  
   - Korean Version of this README : https://github.com/cngjsskaisme/NUGUMate/blob/master/README_ko.md
+  - Korean blog post about this project : https://TnTaekjoon.github.io/NUGUMate/
