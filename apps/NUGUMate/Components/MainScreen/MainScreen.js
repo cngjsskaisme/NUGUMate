@@ -63,7 +63,7 @@ class MainScreen extends Component{
         this.setState({
             ...state
         })
-    }
+    } 
     //nuguname 요청 + 월간 일기 요청
     async componentDidMount() { 
         //AsyncStorage에 nuguname이 없을 때만 nuguname 요청 
@@ -75,18 +75,18 @@ class MainScreen extends Component{
         if(this._isMounted){    
             //nuguname에 따라 아/야 를 덧붙임
             if(await deviceStorage.getItem("nuguname") === "바다" || await deviceStorage.getItem("nuguname") === "나비"){ 
-                let callnugu = await deviceStorage.getItem("nuguname") + "야,";
+                let callnugu = await deviceStorage.getItem("nuguname") + "야";
                 this.setState({
                     nuguname: await deviceStorage.getItem("nuguname"), 
                     callnugu: callnugu}) 
             }   
             else if(await deviceStorage.getItem("nuguname") == "하늘" || await deviceStorage.getItem("nuguname") === "사랑"){ 
-                let callnugu = await deviceStorage.getItem("nuguname") + "아,";
+                let callnugu = await deviceStorage.getItem("nuguname") + "아";
                 this.setState({
                     nuguname: await deviceStorage.getItem("nuguname"), 
                     callnugu: callnugu}) 
             }      
-        }
+        }      
     }   
     componentWillUnmount() {
         this._isMounted = false
@@ -96,7 +96,7 @@ class MainScreen extends Component{
         await _RetrieveDisplay_Monthly_Diary({...this.state},this._onSetStateMainScreen,paramyear,parammonth);    
     } 
 
-    render(){  
+    render(){   
         if(this.state.isLoading){ 
             return(
                 <View>
@@ -114,13 +114,14 @@ class MainScreen extends Component{
         }
 
         else{
+
             return( 
                 <View style={styles.main}>    
                 
                     <Text style={styles.nugusentence}>
                         <Text>누구 스피커에 </Text>
-                        <Text style={styles.nuguname}>"{this.state.callnugu} 오늘 하루 어땠어?"</Text> 
-                        <Text> 라고 물어보세요!</Text>
+                        <Text style={styles.nuguname}>"{this.state.callnugu}"</Text> 
+                        <Text> 라고 말해보세요!</Text>
                     </Text>
                  
                     <View style = {styles.calendar}> 

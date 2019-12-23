@@ -13,7 +13,11 @@ export default _Delete_Diary = async(state, _onSetState) => {
     _onSetState({
         isLoading: true, 
         What: "일기 삭제 중"
-    })  
+    })   
+
+    let diaries = await deviceStorage.getItem("diaries"); 
+    delete diaries[state.selectedDate]; 
+    await deviceStorage.saveKey("diaries",JSON.stringify(diaries));
 
     await axios.post(url, {
             nuguname: await deviceStorage.getItem("nuguname"),

@@ -6,8 +6,6 @@
     안받음
 */
 
-
-
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -41,9 +39,10 @@ class EntryReader extends Component{
           'jeju-myeongjo': require('../../assets/fonts/JejuMyeongjo.ttf'),
         });
         this.setState = {
-            isFontLoaded : true,
-        };
-      }
+            isFontLoaded : true, 
+            contents : this.state.diaryList[this.state.selectedDate] === undefined ? this.state.contents : this.state.diaryList[this.state.selectedDate].contents
+        };  
+    }
 
     _onPressEdit = () => {
         this.props.navigation.navigate('EditEntry', { 
@@ -52,14 +51,15 @@ class EntryReader extends Component{
             _Get_Monthly_Diary: this.state._Get_Monthly_Diary
         })} 
 
-    render(){
+    render(){ 
+        
         if (this.state.isFontLoaded){
             if (this.state.contents === '' && this.state.diaryList[this.props.selectedDate] === undefined){
                 return(
                         <TouchableRipple style = {styles.touch}
                             onPress={() => this._onPressEdit()}>
                             <Text style = {{textAlign: 'center',}}>
-                                아직은 글이 없네요.{"\n\n"}이 날의 일기를 작성해보시는 건 어떨까요?{"\n\n"}여기를 탭하여 작성해보세요! {"\n"}
+                                아직은 일기가 없네요.{"\n\n"}이 날의 일기를 작성해보시는 건 어떨까요?{"\n\n"}여기를 탭하여 작성해보세요! {"\n"}
                             </Text>
                         </TouchableRipple>
                     )

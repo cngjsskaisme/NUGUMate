@@ -8,7 +8,7 @@ import { AsyncStorage } from 'react-native';
 
 // server 연결 관련 
 const server = {
-  serverURL: 'http://172.16.129.179:3000'
+  serverURL: 'http://7dcdc4c0.ngrok.io' //' //http://192.168.99.1:3000'
 }; 
 
 // asyncstorage 관련
@@ -27,7 +27,12 @@ const deviceStorage = {
   async getItem(item) {
     let value = "";
     try { 
-      value = await AsyncStorage.getItem(item); 
+      value = await AsyncStorage.getItem(item);  
+      
+      if(item == 'diaries'){
+        value = JSON.parse(value);
+      }
+      
       return value;
     } catch (error) {
       console.log('AsyncStorage Error: ' + error.message);

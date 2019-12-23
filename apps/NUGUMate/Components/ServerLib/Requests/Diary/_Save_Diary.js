@@ -5,7 +5,8 @@
 */
 import { Alert } from 'react-native';
 import axios from 'axios'; 
-import {server,deviceStorage} from '../../config';
+import {server,deviceStorage} from '../../config'; 
+import _Append_Diary from '../Diary/_Append_Diary';
 
 export default _Save_Diary = async(state, _onSetState) => {
     var url = server.serverURL + '/Diary/Save_Daily_Diary';  
@@ -14,6 +15,8 @@ export default _Save_Diary = async(state, _onSetState) => {
         isLoading: true, 
         What: "일기 저장 중"
     })  
+ 
+    await _Append_Diary(state, _onSetState); 
 
     await axios.post(url, {
             nuguname: await deviceStorage.getItem("nuguname"),

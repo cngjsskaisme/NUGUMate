@@ -6,12 +6,10 @@
     안받음
 */
 
-
-
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { IconButton } from 'react-native-paper'; 
-import Icon from 'react-native-vector-icons/FontAwesome5'; 
+import Icon from 'react-native-vector-icons/EvilIcons'; 
 import PropTypes from 'prop-types';
 import moment from 'moment'; 
 import {_Save_Diary} from '../ServerLib/ServerRequest'; 
@@ -56,15 +54,17 @@ class EntryEditor extends Component{
                     
                         <Icon.Button 
                             name="trash" 
-                            size={25} 
+                            size={35} 
                             backgroundColor= "#ffffff" 
                             color="#000000"
-                            onPress={() => params._onDiaryDeletePopupScreen()}  
+                            onPress={() => params._onDiaryDeletePopupScreen()}   
+                            style = {{flex:1}}
                         />
                         <IconButton
                             icon="check"
                             size={25}
-                            onPress={() => params._onSaveDiary()}
+                            onPress={() => params._onSaveDiary()} 
+                            style = {{flex:1}}
                         />  
                     </View>
                 ),  
